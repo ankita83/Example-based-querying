@@ -46,7 +46,8 @@ def getLists(annout):
 
     return getOptions(rels, tags)
 
-def getOptions(rels, tags):
+#------------- code without token number, can be deleted-----------------
+def getOptions1(rels, tags):
     options = dict()
     finaldict = defaultdict(list)
 
@@ -64,6 +65,38 @@ def getOptions(rels, tags):
         deprel["head_label"] = head[1]
         deprel["dep"] = dependent[0]
         deprel["dep_label"] = dependent[1]
+
+        options["rel-%d" % idx] = deprel
+
+    for key in finaldict.keys():
+        for k, v in options.iteritems():
+            if v["head_token"] == key:
+                finaldict[key].append({k:v})
+
+    return finaldict
+
+#---------------------------Code to include token number---------------------------------
+
+def getOptions(rels, tags):
+    options = dict()
+    finaldict = defaultdict(list)
+
+    for idx, x in enumerate(rels):
+        deprel = {}
+        for kt, vt in tags.iteritems():
+            if x[1] == kt:
+                head = kt + ": " + vt[0]
+                head_label = kt + ": " + vt[1]
+                finaldict[kt] = []
+                deprel["head_token"] = kt
+            if x[2] == kt:
+                dependent = kt + ": " + vt[0]
+                dependent_label = kt + ": " + vt[1]
+        deprel["rel"] = x[0]
+        deprel["head"] = head
+        deprel["head_label"] = head_label
+        deprel["dep"] = dependent
+        deprel["dep_label"] = dependent_label
 
         options["rel-%d" % idx] = deprel
 

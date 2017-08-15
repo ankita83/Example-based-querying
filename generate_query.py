@@ -39,25 +39,28 @@ def getQuery(conllOutput, data):
 
     FQ = []
     for key1, dict2 in queryItems1.items():
-        token = key1
+        # token = key1
         root = []
         A = ""
         B = ""
         for key2, value2 in dict2.items():
-            variable = key2.split("-")[1]
+            # variable = key2.split("-")[1]
             C = ""
             D = ""
             rel = None
             for item in value2:
                 if item[0] == "head":
-                    A = ast.AttributeValue("word", item[1])
+                    token = item[1].split(": ")[0]
+                    A = ast.AttributeValue("word", item[1].split(": ")[1])
                 if item[0] == "head_label":
-                    B = ast.AttributeValue("pos", item[1])
+                    token = item[1].split(": ")[0]
+                    B = ast.AttributeValue("pos", item[1].split(": ")[1])
                 if item[0] == "dep":
-                    # variable = str(tokendict[item[1]])
-                    C = ast.AttributeValue("word", item[1])
+                    variable = item[1].split(": ")[0]
+                    C = ast.AttributeValue("word", item[1].split(": ")[1])
                 if item[0] == "dep_label":
-                    D = ast.AttributeValue("pos", item[1])
+                    variable = item[1].split(": ")[0]
+                    D = ast.AttributeValue("pos", item[1].split(": ")[1])
                 if item[0] == "rel":
                     rel = item[1]
 
@@ -69,10 +72,10 @@ def getQuery(conllOutput, data):
                 else:
                     head = None
             if C!="" or D!="":
-                dep = ast.Token("d"+variable, ast.Conjunction([C,D]))
+                dep = ast.Token(variable, ast.Conjunction([C,D]))
             else:
                 if rel != None:
-                    dep = ast.Token("d"+variable)
+                    dep = ast.Token(variable)
                 else:
                     dep = None
             # To avoid repeating the head values when referencing the head again and just using the token reference
