@@ -39,12 +39,12 @@ def getQuery(conllOutput, data):
 
     FQ = []
     for key1, dict2 in queryItems1.items():
-        # token = key1
+        token = key1
         root = []
         A = ""
         B = ""
         for key2, value2 in dict2.items():
-            # variable = key2.split("-")[1]
+            variable = "d" + key2.split("-")[1]
             C = ""
             D = ""
             rel = None
