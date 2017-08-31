@@ -1,14 +1,16 @@
-# Based on the sentence selected by the user, a list of options is generated
+# Based on the sentence entered by the user, a list of all tokens and dependency relations is generated
 # This list consists of [relation, head, head_label, dependent, dependent_label] for all relations in the dependency tree.
+# Author: Ankita Oswal
+# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
 
 import re
 from collections import defaultdict
-from pprint import pprint
 
 pattern1 = re.compile("^T[0-9]+.*")
 pattern2 = re.compile("^R[0-9]+.*")
 
 def getLists(annout):
+
     rels = []
     tags = defaultdict(list)
 
@@ -45,37 +47,6 @@ def getLists(annout):
         tags[key].append(label)
 
     return getOptions(rels, tags)
-
-#------------- code without token number, can be deleted-----------------
-def getOptions1(rels, tags):
-    options = dict()
-    finaldict = defaultdict(list)
-
-    for idx, x in enumerate(rels):
-        deprel = {}
-        for kt, vt in tags.iteritems():
-            if x[1] == kt:
-                head = vt
-                finaldict[kt] = []
-                deprel["head_token"] = kt
-            if x[2] == kt:
-                dependent = vt
-        deprel["rel"] = x[0]
-        deprel["head"] = head[0]
-        deprel["head_label"] = head[1]
-        deprel["dep"] = dependent[0]
-        deprel["dep_label"] = dependent[1]
-
-        options["rel-%d" % idx] = deprel
-
-    for key in finaldict.keys():
-        for k, v in options.iteritems():
-            if v["head_token"] == key:
-                finaldict[key].append({k:v})
-
-    return finaldict
-
-#---------------------------Code to include token number---------------------------------
 
 def getOptions(rels, tags):
     options = dict()

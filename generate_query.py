@@ -1,22 +1,11 @@
-# Method to generate the TIGER Search query from the options selected by the user
+# Generates the TIGER Search query from the relevant parts marked by the user
+# Author: Ankita Oswal
+# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
 
 from collections import defaultdict
 import tigerAST as ast
-from pprint import pprint
 
-def getQuery(conllOutput, data):
-    tokendict = defaultdict(tuple)
-    for x in conllOutput[:-1]:
-        temp = x.split("\t")
-        tokendict[temp[0]] = (temp[1], temp[3])
-    # pprint(tokendict)
-
-    # count = 1
-    # tokens = sentence.split(" ")
-    # for element in tokens:
-    #     tokendict[element] = count
-    #     count+=1
-    # pprint(tokendict)
+def getQuery(data):
 
     queryItems = defaultdict(list)
     queryItems1 = defaultdict(dict)
@@ -90,9 +79,7 @@ def getQuery(conllOutput, data):
                 del root[0]
 
         FQ.append(ast.Conjunction(root))
-    print "----- AST Query ---------------------------"
-    print ast.Conjunction(FQ)
-    print "-------------------------------------------"
+
     h = ast.Conjunction(FQ)
     return str(h)
 

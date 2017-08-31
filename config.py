@@ -1,5 +1,6 @@
 # Configuration file containing all paths
-
+# Author: Ankita Oswal
+# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
 
 # paths required by the 'generate_conll-format.py' script to run the parser
 MODEL_DIRECTORY = "/home/ankita/models/syntaxnet/syntaxnet/models"

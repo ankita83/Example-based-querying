@@ -1,6 +1,8 @@
-# The sentence entered by the user is passed to this script.
+# The sentence entered by the user is passed to the method getConllFormat.
 # The sentence is passed as input to the SyntaxNet parser (parser.sh) which writes the conll format of the sentence into a file.
 # The file is read and converted to a list that is returned to the main calling script.
+# Author: Ankita Oswal
+# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
 
 import subprocess
 import os
@@ -44,7 +46,8 @@ def getConllFormat(language , sentence):
     # return the list containing the conll format of the user enetered sentence
     return output
 
-
+# Method called when user selects parts of the sentence relevant for query generation.
+# The input example and marked parts are passed to Tundra in order to mark the selections in the dependency tree.
 def getSelectedList(language, conllOutput, query):
 
     fq = "\"" + query.replace('"', '\\"') + "\""

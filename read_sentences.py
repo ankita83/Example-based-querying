@@ -2,6 +2,8 @@
 # user enters a sentence (index.html)
 # selected sentence is then passed to the necessary scripts in order to finally view the dependency tree.
 # and the tokens that the user can select in order to create a search query (in TIGERSearch format)
+# Author: Ankita Oswal
+# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
 
 import web
 import conll_to_standoff
@@ -13,7 +15,6 @@ import string
 import generate_query
 import webbrowser as wb
 import urllib as ul
-from pprint import pprint
 
 urls = ('/', 'index','/showSentence','showSentence','/displayOptions','displayOptions', '/displaySearch', 'displaySearch')
 app = web.application(urls, globals())
@@ -55,7 +56,7 @@ class showSentence:
         # check if there is a space before last punctuation character, if not insert one
         x = sent[1]
         if x[-1] in string.punctuation:
-            if x[len(x)-1] != " ":
+            if x[len(x)-2] != " ":
                 temp = x[:-1] + " " + x[-1]
                 sent[1] = temp
 
@@ -81,7 +82,11 @@ class displayOptions:
 
     @classmethod
     def display_query(self, options):
-        session['finalQuery'] = generate_query.getQuery(session['conllOutput'], options)
+        if any(options):
+            session['finalQuery'] = generate_query.getQuery(options)
+        else:
+            pos = session['conllOutput'][0].split("\t")[3]
+            session['finalQuery'] = "#T1:[pos=\"%s\"]" %pos
         tempList = generate_conll_format.getSelectedList(session['language'], session['conllOutput'], session['finalQuery'])
         bratObjects = bratObject.createBratObjects(session['bratformat'], tempList[0], tempList[1])
         return bratObjects
@@ -91,8 +96,9 @@ class displaySearch:
         self.render = web.template.render('templates/')
 
     def POST(self):
+        data = web.input().values()
         treebank = config.language_to_model[session['language']]
-        q = ul.quote(session['finalQuery'].encode('utf-8'))
+        q = ul.quote(data[0].encode('utf-8'))
         wb.open("https://weblicht.sfs.uni-tuebingen.de/tundra-beta/public/treebank.html?bank=%s&q=%s" % (treebank, q))
         return self.render.displaySearch()
 

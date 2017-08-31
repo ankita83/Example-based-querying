@@ -1,7 +1,8 @@
-# Convert a sentence in conllU format to the standoff format required by brat nlp.
+# Converts the sentence from conllU format to the standoff format required by brat nlp.
+# Author: Ankita Oswal (modified the conllXtostandoff.py file from brat)
+# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
 
 import sys
-from pprint import pprint
 
 # whether to output an explicit root note
 OUTPUT_ROOT = True
@@ -34,7 +35,6 @@ def process(sentence):
     tokens, deps = [], []
 
     for l in sentence:
-        #print l
         if l is not None:
             fields = l.split('\t')
         else:
@@ -52,7 +52,6 @@ def process(sentence):
 def output(tokens, deps):
     annout = []
     offset, idnum, ridnum = 0, 1, 1
-    #doctext = ""
 
     # store mapping from per-sentence token sequence IDs to
     # document-unique token IDs
@@ -68,7 +67,6 @@ def output(tokens, deps):
     for ID, form, POS in tokens:
 
         if prev_form is not None:
-            #doctext = doctext + ' '
             offset += 1
 
         # output a token annotation
@@ -76,7 +74,6 @@ def output(tokens, deps):
         idmap[ID] = idnum
         idnum += 1
 
-        #doctext = doctext + form
         offset += len(form)
 
         prev_form = form
@@ -91,6 +88,5 @@ def output(tokens, deps):
         annout.append(depstr(idmap[dep], idmap[head], rel, ridnum))
         ridnum += 1
 
-    #doctext = doctext + '\n'
     offset += 1
     return annout

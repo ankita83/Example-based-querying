@@ -1,3 +1,8 @@
+# AST like data structure to implement different parts of the query
+# Can be extended to include new features like precedence and sibling relations of the TIGERSearch language
+# Author: Ankita Oswal
+# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
+
 class QueryNode:
     pass
 
@@ -49,6 +54,7 @@ class DepRel(QueryNode):
             else:
                 return "{}".format(self._dep)
 
+# An example to test the AST structure
 example1 = Conjunction([
     DepRel(
         Token("T4", Conjunction([
