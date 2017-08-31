@@ -1,3 +1,10 @@
+<!--
+ Start page displaying language selection to the user.
+ The user can select a language and enter an example input sentence.
+ Author: Ankita Oswal
+ BA Thesis (Supervision by Dr. phil. Daniël de Kok)
+-->
+
 $def with (language_to_model)
 
 <!DOCTYPE html>
@@ -5,7 +12,7 @@ $def with (language_to_model)
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Webpage to select a sentence</title>
+        <title>Start Page</title>
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -14,7 +21,7 @@ $def with (language_to_model)
         {
         font-size: 16pt;
         height: 50px;
-        width: 500px;
+        width: 80%;
         }
         </style>
     </head>
@@ -27,7 +34,6 @@ $def with (language_to_model)
                 $for key in language_to_model.keys():
                     <option value="$key"> $key </option>
 
-                    <!--<option value="English"> english </option>-->
             </select> <br><br>
             <h2> Enter a sentence/part of sentence that you wish to query. </h2>
             <input type="text" id="sentence" name="sentence" value="" placeholder="The sentence that is to be parsed." class="Large"><br><br>

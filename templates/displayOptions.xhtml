@@ -1,3 +1,10 @@
+<!--
+ Page displaying dependency tree of the sentence with the relevant parts marked.
+ The query is displayed to the user.
+ Author: Ankita Oswal (modified from http://brat.nlplab.org/embed.html)
+ BA Thesis (Supervision by Dr. phil. Daniël de Kok)
+-->
+
 $def with (bratObject, query)
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html
@@ -6,7 +13,7 @@ $def with (bratObject, query)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Embedded Visualisations - brat rapid annotation tool</title>
+    <title>TIGERSearch Query</title>
 
     <link rel="stylesheet" type="text/css" href="/static/style.css"/>
     <link rel="stylesheet" type="text/css" href="/static/jquery-ui-redmond.css"/>
@@ -57,10 +64,11 @@ $def with (bratObject, query)
             <!--trial for displaying query -->
             <br />
             <h2 id="query">Search Query</h2>
+            <h4> You may modify the query here, or change your selections by clicking 'Change selections'</h4>
 
             <div>
                 <form action="displaySearch" method="post">
-                    <input type="text" name="query" value="$query" readonly="readonly" class="Large"/>
+                    <input type="text" name="query" value="$query" class="Large"/>
                     <br /> <br />
                     <input type="button" value="Change selections" onclick="javascript:history.back()"/>
                     <br /> <br />
