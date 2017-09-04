@@ -1,6 +1,6 @@
 # Converts the sentence from conllU format to the standoff format required by brat nlp.
 # Author: Ankita Oswal (modified the conllXtostandoff.py file from brat)
-# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
+# BA Thesis
 
 import sys
 

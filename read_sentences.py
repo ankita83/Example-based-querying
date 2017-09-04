@@ -3,7 +3,7 @@
 # selected sentence is then passed to the necessary scripts in order to finally view the dependency tree.
 # and the tokens that the user can select in order to create a search query (in TIGERSearch format)
 # Author: Ankita Oswal
-# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
+# BA Thesis
 
 import web
 import conll_to_standoff

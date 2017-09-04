@@ -1,6 +1,6 @@
 # Generates the TIGER Search query from the relevant parts marked by the user
 # Author: Ankita Oswal
-# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
+# BA Thesis
 
 from collections import defaultdict
 import tigerAST as ast

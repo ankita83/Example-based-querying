@@ -2,7 +2,7 @@
 # The sentence is passed as input to the SyntaxNet parser (parser.sh) which writes the conll format of the sentence into a file.
 # The file is read and converted to a list that is returned to the main calling script.
 # Author: Ankita Oswal
-# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
+# BA Thesis
 
 import subprocess
 import os

@@ -2,7 +2,7 @@
 # the document object. These objects are needed by the showSentence.xhtml to view the dependency tree of a sentence/text
 # using bratnlp tool.
 # Author: Ankita Oswal
-# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
+# BA Thesis
 
 import re
 

@@ -1,7 +1,7 @@
 # Based on the sentence entered by the user, a list of all tokens and dependency relations is generated
 # This list consists of [relation, head, head_label, dependent, dependent_label] for all relations in the dependency tree.
 # Author: Ankita Oswal
-# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
+# BA Thesis
 
 import re
 from collections import defaultdict

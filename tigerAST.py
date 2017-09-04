@@ -1,7 +1,7 @@
 # AST like data structure to implement different parts of the query
 # Can be extended to include new features like precedence and sibling relations of the TIGERSearch language
 # Author: Ankita Oswal
-# BA Thesis (Supervision by Dr. phil. Daniël de Kok)
+# BA Thesis
 
 class QueryNode:
     pass
